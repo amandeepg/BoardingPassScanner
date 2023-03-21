@@ -1,0 +1,102 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'org.jlleitschuh.gradle.ktlint'
+    id "com.google.devtools.ksp"
+}
+
+android {
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "ca.amandeep.bcbpscanner"
+        minSdk 29
+        targetSdk 33
+        versionCode 1
+        versionName "1.0"
+
+        vectorDrawables {
+            useSupportLibrary true
+        }
+        signingConfig signingConfigs.debug
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    kotlin {
+        jvmToolchain(11)
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = 11
+    }
+    buildFeatures {
+        compose true
+        viewBinding true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '_'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+    namespace 'ca.amandeep.bcbpscanner'
+}
+
+dependencies {
+    implementation AndroidX.activity.compose
+    implementation AndroidX.appCompat
+
+    implementation AndroidX.compose.foundation
+    implementation AndroidX.compose.material
+    implementation AndroidX.compose.material
+    implementation AndroidX.compose.material3
+    implementation AndroidX.compose.material.icons.core
+    implementation AndroidX.compose.material.icons.extended
+    implementation AndroidX.compose.ui
+    implementation AndroidX.compose.ui.viewBinding
+
+    implementation AndroidX.compose.ui.tooling
+    debugImplementation AndroidX.compose.ui.toolingPreview
+
+    implementation AndroidX.core.ktx
+    implementation AndroidX.fragment.ktx
+
+    implementation AndroidX.lifecycle.extensions
+    implementation AndroidX.lifecycle.runtime.compose
+    implementation AndroidX.lifecycle.runtime.ktx
+    implementation AndroidX.lifecycle.viewModelKtx
+    implementation AndroidX.lifecycle.viewModelKtx
+
+    implementation COIL.compose
+
+    implementation Google.accompanist.permissions
+
+    implementation Google.android.material
+    implementation Google.android.playServices.mlKit.vision.barcodeScanning
+
+    implementation Splitties.alertdialogMaterial
+    implementation Splitties.pack.androidBase
+
+    implementation Square.moshi
+    ksp Square.moshi.kotlinCodegen
+
+    implementation JakeWharton.timber
+    implementation 'com.github.ajalt:timberkt:_'
+
+    implementation 'com.google.android.gms:play-services-code-scanner:_'
+    implementation 'com.vanniktech:android-image-cropper:_'
+    implementation 'dev.burnoo:compose-remember-preference:_'
+
+    ktlintRuleset 'io.nlopez.compose.rules:ktlint:_'
+}

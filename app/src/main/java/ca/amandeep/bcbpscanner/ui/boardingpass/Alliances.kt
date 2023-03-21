@@ -1,0 +1,93 @@
+package ca.amandeep.bcbpscanner.ui.boardingpass
+
+import ca.amandeep.bcbpscanner.R
+
+// http://api.travelpayouts.com/data/en/alliances.json
+private val ALLIANCES = listOf(
+    R.drawable.star_alliance to listOf(
+        "LH",
+        "SK",
+        "BR",
+        "MS",
+        "TP",
+        "CM",
+        "A3",
+        "CO",
+        "SQ",
+        "SA",
+        "ET",
+        "NH",
+        "LX",
+        "AC",
+        "NZ",
+        "OZ",
+        "AV",
+        "TK",
+        "CA",
+        "ZH",
+        "OU",
+        "TG",
+        "LO",
+        "UA",
+        "SN",
+        "OS",
+        "AI",
+        "JP"
+    ),
+    R.drawable.skyteam to listOf(
+        "GA",
+        "RO",
+        "ME",
+        "KQ",
+        "SU",
+        "AM",
+        "MF",
+        "VN",
+        "CT",
+        "AF",
+        "SV",
+        "MU",
+        "DL",
+        "KL",
+        "CI",
+        "UX",
+        "OK",
+        "CZ",
+        "AR",
+        "KE",
+        "AZ",
+        "FV"
+    ),
+    R.drawable.oneworld to listOf(
+        "GH",
+        "EC",
+        "IB",
+        "QR",
+        "CJ",
+        "XL",
+        "MN",
+        "KA",
+        "JC",
+        "S7",
+        "AY",
+        "UL",
+        "JJ",
+        "AA",
+        "QF",
+        "JL",
+        "YW",
+        "NU",
+        "EZ",
+        "LA",
+        "4M",
+        "CX",
+        "RJ",
+        "BA",
+        "MH",
+        "I2",
+        "HG"
+    )
+)
+
+fun allianceForAirline(airline: String?): Int? =
+    ALLIANCES.firstOrNull { airline in it.second }?.first

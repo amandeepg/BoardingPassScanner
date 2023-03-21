@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Scan Boarding Pass</string>
+
+    <string name="find_instruction">Find your boarding pass barcode</string>
+    <string name="cd_flash_button">Toggle camera flash</string>
+    <string name="open_photo_library">Select from gallery</string>
+    <string name="camera_rationale">Camera access required to scan boarding passes</string>
+    <string name="camera_rationale_caveat">Without granting, importing from your photo library is still possible</string>
+    <string name="request_permission">Allow</string>
+    <string name="barcode_fail_parse_title">Failed to find barcode</string>
+    <string name="barcode_fail_parse_body">Try cropping the image to focus on the barcode, or try a higher resolution image.</string>
+    <string name="tsa_precheck">TSA PreCheck</string>
+</resources>
