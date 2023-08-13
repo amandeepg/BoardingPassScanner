@@ -104,7 +104,7 @@ private val iconMap = mapOf(
     "9W" to R.drawable.x9w,
     "XL" to R.drawable.xl,
     "XP" to R.drawable.xp,
-    "Y9" to R.drawable.y9
+    "Y9" to R.drawable.y9,
 ).mapKeys { it.key.uppercase(Locale.US) }
 
 private val FALLBACK_IMAGE_SIZES = listOf(
@@ -119,17 +119,17 @@ private const val DEBUG_SIZE = false
 @Composable
 fun Airline(
     airline: String?,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier.heightIn(max = 70.dp),
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         iconMap[airline]?.let {
             Icon(
                 painter = painterResource(id = it),
                 contentDescription = "Airline logo",
-                tint = Color.Unspecified
+                tint = Color.Unspecified,
             )
         } ?: run {
             val painters = FALLBACK_IMAGE_SIZES.map {
@@ -140,12 +140,12 @@ fun Airline(
                             transformations(TrimTransform)
                             scale(Scale.FIT)
                             size(Size.ORIGINAL)
-                        }.build()
+                        }.build(),
                 )
             }
             if (painters.all { it.state !is AsyncImagePainter.State.Success }) {
                 CircularProgressIndicator(
-                    color = Color(0, 0, 0, 150)
+                    color = Color(0, 0, 0, 150),
                 )
             } else {
                 Image(
@@ -153,13 +153,13 @@ fun Airline(
                     contentDescription = null,
                     modifier = Modifier.fillMaxSize(),
                     contentScale = ContentScale.Fit,
-                    alignment = Alignment.CenterStart
+                    alignment = Alignment.CenterStart,
                 )
             }
             if (DEBUG_SIZE) {
                 Text(
                     (painters.lastOrNull { it.state is AsyncImagePainter.State.Success }?.state as? AsyncImagePainter.State.Success)
-                        ?.result?.drawable?.intrinsicWidth?.toString().orEmpty()
+                        ?.result?.drawable?.intrinsicWidth?.toString().orEmpty(),
                 )
             }
         }
@@ -169,7 +169,7 @@ fun Airline(
                 modifier = Modifier.heightIn(max = 25.dp),
                 painter = painterResource(id = it),
                 contentDescription = "Airline alliance",
-                tint = Color.Unspecified
+                tint = Color.Unspecified,
             )
         }
     }
@@ -200,7 +200,7 @@ private object TrimTransform : Transformation {
             /* x = */ minX,
             /* y = */ minY,
             /* width = */ maxX - minX + 1,
-            /* height = */ maxY - minY + 1
+            /* height = */ maxY - minY + 1,
         )
     }
 
@@ -216,7 +216,7 @@ private fun PreviewAirline(@PreviewParameter(ArlinePreviewProvider::class) airli
         Row(
             Modifier
                 .wrapContentSize()
-                .padding(10.dp)
+                .padding(10.dp),
         ) {
             Airline(airline)
         }

@@ -45,12 +45,12 @@ object AirportToNameMap {
     @JsonClass(generateAdapter = true)
     data class JsonAirport(
         val code: String,
-        val city_code: String
+        val city_code: String,
     )
 
     @JsonClass(generateAdapter = true)
     data class JsonCity(
         val code: String,
-        val name: String
+        val name: String,
     )
 }

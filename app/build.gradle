@@ -1,17 +1,20 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'org.jlleitschuh.gradle.ktlint'
-    id "com.google.devtools.ksp"
+    id 'kotlin-parcelize'
+    id 'org.jmailen.kotlinter'
+    id 'com.google.devtools.ksp'
+    id 'de.mannodermaus.android-junit5'
+    id 'app.cash.licensee'
 }
 
 android {
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "ca.amandeep.bcbpscanner"
         minSdk 29
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -36,7 +39,12 @@ android {
         targetCompatibility JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = 11
+        jvmTarget = '11'
+        freeCompilerArgs += "-Xopt-in=kotlin.RequiresOptIn"
+        freeCompilerArgs += "-P"
+        freeCompilerArgs += "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=" + project.buildDir.absolutePath + "/compose_compiler"
+        freeCompilerArgs += "-P"
+        freeCompilerArgs += "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=" + project.buildDir.absolutePath + "/compose_compiler"
     }
     buildFeatures {
         compose true
@@ -97,6 +105,14 @@ dependencies {
     implementation 'com.google.android.gms:play-services-code-scanner:_'
     implementation 'com.vanniktech:android-image-cropper:_'
     implementation 'dev.burnoo:compose-remember-preference:_'
+}
 
-    ktlintRuleset 'io.nlopez.compose.rules:ktlint:_'
+licensee {
+    allow 'Apache-2.0'
+    allowUrl('https://developer.android.com/studio/terms.html') {
+        because 'Android Software Development Kit License Agreement'
+    }
+    allowUrl('https://developers.google.com/ml-kit/terms') {
+        because 'ML KIT Terms of Service'
+    }
 }

@@ -47,11 +47,11 @@ fun CameraOverlay(
     isFlashOn: Boolean,
     setFlash: (Boolean) -> Unit,
     onOpenLibrary: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     // Background will be assumed to be dark, so content color should be bright/white
     CompositionLocalProvider(
-        LocalContentColor provides Color.White
+        LocalContentColor provides Color.White,
     ) {
         Column(modifier) {
             Spacer(modifier = Modifier.fillMaxHeight(0.1f))
@@ -66,9 +66,9 @@ fun CameraOverlay(
                             shadow = Shadow(
                                 color = Color.Black.copy(alpha = 0.5f),
                                 offset = Offset(2f, 2f),
-                                blurRadius = 8f
-                            )
-                        )
+                                blurRadius = 8f,
+                            ),
+                        ),
                     )
                 }
             }
@@ -78,15 +78,15 @@ fun CameraOverlay(
                     .fillMaxHeight(0.3f)
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 FilledIconButton(
                     onClick = { setFlash(!isFlashOn) },
                     modifier = Modifier.size(70.dp),
                     shape = CircleShape,
                     colors = IconButtonDefaults.filledIconButtonColors(
-                        containerColor = LocalContentColor.current.copy(alpha = 0.2f)
-                    )
+                        containerColor = LocalContentColor.current.copy(alpha = 0.2f),
+                    ),
                 ) {
                     Icon(
                         modifier = Modifier.size(35.dp),
@@ -95,9 +95,9 @@ fun CameraOverlay(
                                 R.drawable.ic_flash_on
                             } else {
                                 R.drawable.ic_flash_off
-                            }
+                            },
                         ),
-                        contentDescription = stringResource(R.string.cd_flash_button)
+                        contentDescription = stringResource(R.string.cd_flash_button),
                     )
                 }
                 Spacer(modifier = Modifier.fillMaxWidth(0.1f))
@@ -106,13 +106,13 @@ fun CameraOverlay(
                     modifier = Modifier.size(70.dp),
                     shape = CircleShape,
                     colors = IconButtonDefaults.filledIconButtonColors(
-                        containerColor = LocalContentColor.current.copy(alpha = 0.2f)
-                    )
+                        containerColor = LocalContentColor.current.copy(alpha = 0.2f),
+                    ),
                 ) {
                     Icon(
                         modifier = Modifier.size(35.dp),
                         painter = painterResource(R.drawable.ic_photo_library),
-                        contentDescription = stringResource(R.string.open_photo_library)
+                        contentDescription = stringResource(R.string.open_photo_library),
                     )
                 }
             }
@@ -128,7 +128,7 @@ private fun CameraOverlayPreview() {
             state = ScanningViewModel.State.Detecting,
             isFlashOn = false,
             setFlash = {},
-            onOpenLibrary = {}
+            onOpenLibrary = {},
         )
     }
 }

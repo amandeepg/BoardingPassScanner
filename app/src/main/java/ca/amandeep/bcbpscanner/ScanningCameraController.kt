@@ -34,7 +34,7 @@ import java.io.IOException
 @OptIn(ExperimentalSplittiesApi::class)
 class ScanningCameraController(
     private val lifecycleOwner: LifecycleOwner,
-    viewModelProvider: ViewModelProvider
+    viewModelProvider: ViewModelProvider,
 ) : DefaultLifecycleObserver {
     private val viewModel = viewModelProvider.get<ScanningViewModel>()
 
@@ -50,7 +50,8 @@ class ScanningCameraController(
                 d { "Current workflow state: ${state.javaClass}" }
                 when (state) {
                     ScanningViewModel.State.Stopped,
-                    is ScanningViewModel.State.DetectedAndStopped ->
+                    is ScanningViewModel.State.DetectedAndStopped,
+                    ->
                         preview?.stop()
 
                     ScanningViewModel.State.Detecting ->
@@ -61,7 +62,8 @@ class ScanningCameraController(
                         }
 
                     ScanningViewModel.State.Searching,
-                    is ScanningViewModel.State.Detected ->
+                    is ScanningViewModel.State.Detected,
+                    ->
                         Unit
                 }
             }
@@ -78,7 +80,7 @@ class ScanningCameraController(
                 Camera.Parameters.FLASH_MODE_TORCH
             } else {
                 Camera.Parameters.FLASH_MODE_OFF
-            }
+            },
         )
     }
 
@@ -89,7 +91,7 @@ class ScanningCameraController(
 
     fun attachPreview(
         cameraPreview: CameraSourcePreview,
-        cameraPreviewGraphicOverlay: GraphicOverlay
+        cameraPreviewGraphicOverlay: GraphicOverlay,
     ) {
         releasePreview()
         preview = cameraPreview

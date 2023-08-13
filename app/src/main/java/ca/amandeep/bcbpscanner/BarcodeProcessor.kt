@@ -25,7 +25,7 @@ import java.io.IOException
  */
 class BarcodeProcessor(
     graphicOverlay: GraphicOverlay,
-    private val scanningViewModel: ScanningViewModel
+    private val scanningViewModel: ScanningViewModel,
 ) :
     FrameProcessorBase<IataCode?>() {
 
@@ -43,7 +43,7 @@ class BarcodeProcessor(
     @MainThread
     override fun onSuccess(
         results: IataCode?,
-        graphicOverlay: GraphicOverlay
+        graphicOverlay: GraphicOverlay,
     ) {
         if (scanningViewModel.state !is State.Detecting) return
 
@@ -68,7 +68,7 @@ class BarcodeProcessor(
 
     private fun createLoadingAnimator(
         graphicOverlay: GraphicOverlay,
-        barcode: IataCode
+        barcode: IataCode,
     ): ValueAnimator {
         val endProgress = DELAY_LENGTH / 1500f * 1.1f
         return ValueAnimator.ofFloat(0f, endProgress).apply {
@@ -108,9 +108,9 @@ class BarcodeProcessor(
                     Barcode.FORMAT_DATA_MATRIX,
                     Barcode.FORMAT_QR_CODE,
                     Barcode.FORMAT_PDF417,
-                    Barcode.FORMAT_AZTEC
+                    Barcode.FORMAT_AZTEC,
                 )
-                .build()
+                .build(),
         )
 
         private val PARSER: Parser = Parser()

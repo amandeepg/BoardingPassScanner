@@ -34,7 +34,7 @@ fun BCBPScannerTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
@@ -49,13 +49,14 @@ fun BCBPScannerTheme(
     if (!view.isInEditMode && view.context is Activity) {
         SideEffect {
             (view.context as Activity).window.statusBarColor = colorScheme.surface.toArgb()
+            @Suppress("DEPRECATION")
             ViewCompat.getWindowInsetsController(view)?.isAppearanceLightStatusBars = !darkTheme
         }
     }
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography
+        typography = Typography,
     ) {
         androidx.compose.material.MaterialTheme(
             colors = androidx.compose.material.MaterialTheme.colors.copy(
@@ -71,8 +72,8 @@ fun BCBPScannerTheme(
                 onBackground = colorScheme.onBackground,
                 onSurface = colorScheme.onSurface,
                 onError = colorScheme.onError,
-                isLight = !darkTheme
-            )
+                isLight = !darkTheme,
+            ),
         ) {
             content()
         }
@@ -83,7 +84,7 @@ fun BCBPScannerTheme(
 fun Card3(
     modifier: Modifier = Modifier,
     elevation: Dp = 1.dp,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Card(
         modifier = modifier,
@@ -95,9 +96,9 @@ fun Card3(
             lerp(
                 MaterialTheme.colorScheme.surface,
                 Color(0xFF7E7E7E),
-                0.07f
+                0.07f,
             )
-        }
+        },
     ) {
         ProvideTextStyle(TextStyle(color = MaterialTheme.colorScheme.onSurface)) {
             CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.onSurface) {

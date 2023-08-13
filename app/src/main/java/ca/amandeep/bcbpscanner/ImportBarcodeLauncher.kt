@@ -32,7 +32,7 @@ import splitties.alertdialog.material.materialAlertDialog
 class ImportBarcodeLauncher(
     private val activity: ComponentActivity,
     private val onBarcodeSelected: (IataCode) -> Unit,
-    private val onCancel: () -> Unit
+    private val onCancel: () -> Unit,
 ) {
     private val pickMediaLauncher =
         activity.registerForActivityResult(ActivityResultContracts.PickVisualMedia()) {
@@ -70,16 +70,16 @@ class ImportBarcodeLauncher(
                 uri = uri,
                 cropImageOptions = CropImageOptions(
                     guidelines = CropImageView.Guidelines.ON,
-                    imageSourceIncludeCamera = false
-                )
-            )
+                    imageSourceIncludeCamera = false,
+                ),
+            ),
         )
 
     /**
      * Launches the import process.
      */
     fun launch() =
-        if (ActivityResultContracts.PickVisualMedia.isPhotoPickerAvailable()) {
+        if (ActivityResultContracts.PickVisualMedia.isPhotoPickerAvailable(activity)) {
             pickMediaLauncher.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
         } else {
             cropImage()

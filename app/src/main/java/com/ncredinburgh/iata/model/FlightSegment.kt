@@ -132,7 +132,7 @@ data class FlightSegment private constructor(val elements: Map<Element, CharSequ
                 check(e.occurrence == Occurrence.R) {
                     String.format(
                         "Element (%s) does not have REPEATED occurrence.",
-                        e.name
+                        e.name,
                     )
                 }
             }

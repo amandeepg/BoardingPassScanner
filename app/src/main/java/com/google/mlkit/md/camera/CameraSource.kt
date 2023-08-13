@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+@file:Suppress("DEPRECATION")
+
 package com.google.mlkit.md.camera
 
 import android.content.Context
@@ -180,7 +182,7 @@ class CameraSource(private val graphicOverlay: GraphicOverlay) {
             ?: throw IOException("Could not find suitable preview frames per second range.")
         parameters.setPreviewFpsRange(
             previewFpsRange[Parameters.PREVIEW_FPS_MIN_INDEX],
-            previewFpsRange[Parameters.PREVIEW_FPS_MAX_INDEX]
+            previewFpsRange[Parameters.PREVIEW_FPS_MAX_INDEX],
         )
 
         parameters.previewFormat = IMAGE_FORMAT
@@ -283,7 +285,7 @@ class CameraSource(private val graphicOverlay: GraphicOverlay) {
         // should guarantee that there will be an array to work with.
         val byteArray = ByteArray(bufferSize)
         val byteBuffer = ByteBuffer.wrap(byteArray)
-        check(!(!byteBuffer.hasArray() || !byteBuffer.array()!!.contentEquals(byteArray))) {
+        check(!(!byteBuffer.hasArray() || !byteBuffer.array().contentEquals(byteArray))) {
             // This should never happen. If it does, then we wouldn't be passing the preview content to
             // the underlying detector later.
             "Failed to create valid buffer for camera source."

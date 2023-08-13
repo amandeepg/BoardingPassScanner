@@ -108,7 +108,7 @@ class CameraSourcePreview(context: Context, attrs: AttributeSet) : FrameLayout(c
                     0,
                     -excessLenInHalf,
                     layoutWidth,
-                    layoutHeight + excessLenInHalf
+                    layoutHeight + excessLenInHalf,
                 )
             }
         }

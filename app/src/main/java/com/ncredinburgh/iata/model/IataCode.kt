@@ -27,7 +27,7 @@ import java.util.regex.Pattern
 
 data class IataCode private constructor(
     val elements: Map<Element, CharSequence>,
-    val flightSegments: List<FlightSegment>
+    val flightSegments: List<FlightSegment>,
 ) {
     val formatCode: FormatCode
         get() = FormatCode.parse(getValue(Element.FORMAT_CODE))
@@ -38,13 +38,13 @@ data class IataCode private constructor(
     val passengerFirstName: String?
         get() = getPassengerNamePart(
             passengerName,
-            FIRST_NAME_GROUP
+            FIRST_NAME_GROUP,
         )
 
     val passengerLastName: String?
         get() = getPassengerNamePart(
             passengerName,
-            LAST_NAME_GROUP
+            LAST_NAME_GROUP,
         )
 
     val versionNumber: String?
@@ -77,7 +77,7 @@ data class IataCode private constructor(
     val securityData: SecurityData
         get() = SecurityData(
             getValue(Element.TYPE_OF_SECURITY_DATA),
-            getValue(Element.SECURITY_DATA)
+            getValue(Element.SECURITY_DATA),
         )
 
     private fun getValue(e: Element): String? = elements[e]?.toString()
@@ -115,7 +115,7 @@ data class IataCode private constructor(
                 check(e.occurrence == Occurrence.U) {
                     String.format(
                         "Element (%s) does not have UNIQUE occurrence.",
-                        e.name
+                        e.name,
                     )
                 }
             }

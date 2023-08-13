@@ -40,19 +40,19 @@ class ScanningActivity : ComponentActivity() {
     private val importBarcodeLauncher = ImportBarcodeLauncher(
         activity = this,
         onBarcodeSelected = { viewModel.setDetected(it) },
-        onCancel = { viewModel.setStateDetecting() }
+        onCancel = { viewModel.setStateDetecting() },
     )
 
     @OptIn(
         ExperimentalMaterialApi::class,
-        ExperimentalPermissionsApi::class
+        ExperimentalPermissionsApi::class,
     )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         val scanningCameraController = ScanningCameraController(
             lifecycleOwner = this,
-            viewModelProvider = ViewModelProvider(this)
+            viewModelProvider = ViewModelProvider(this),
         )
 
         setContent {
@@ -71,7 +71,7 @@ class ScanningActivity : ComponentActivity() {
             BCBPScannerTheme {
                 val sheetState = rememberModalBottomSheetState(
                     initialValue = ModalBottomSheetValue.Hidden,
-                    skipHalfExpanded = true
+                    skipHalfExpanded = true,
                 )
                 // Show the sheet when there is a barcode detected.
                 LaunchedEffect(state) {
@@ -100,12 +100,12 @@ class ScanningActivity : ComponentActivity() {
                                     else -> Spacer(
                                         Modifier
                                             .fillMaxWidth()
-                                            .height(100.dp)
+                                            .height(100.dp),
                                     )
                                 }
                             }
                         }
-                    }
+                    },
                 ) {
                     if (cameraPermissionState.status.isGranted) {
                         Box(Modifier.fillMaxSize()) {
@@ -117,23 +117,23 @@ class ScanningActivity : ComponentActivity() {
                                         d { "Camera preview update" }
                                         scanningCameraController.attachPreview(
                                             cameraPreview = cameraPreview,
-                                            cameraPreviewGraphicOverlay = cameraPreviewGraphicOverlay
+                                            cameraPreviewGraphicOverlay = cameraPreviewGraphicOverlay,
                                         )
                                         viewModel.setStateDetecting()
                                     }
-                                }
+                                },
                             )
                             CameraOverlay(
                                 state = state,
                                 isFlashOn = flashOn,
                                 setFlash = { viewModel.flashOn = !flashOn },
-                                onOpenLibrary = importBarcodeLauncher::launch
+                                onOpenLibrary = importBarcodeLauncher::launch,
                             )
                         }
                     } else {
                         PermissionRequestScreen(
                             onOpenLibrary = importBarcodeLauncher::launch,
-                            launchCameraPermissionRequest = cameraPermissionState::launchPermissionRequest
+                            launchCameraPermissionRequest = cameraPermissionState::launchPermissionRequest,
                         )
                     }
                 }

@@ -30,10 +30,10 @@ object UTCCalendarFactory {
         val yearToUse = listOf(
             Calendar.getInstance(),
             Calendar.getInstance().apply { roll(Calendar.YEAR, -1) },
-            Calendar.getInstance().apply { roll(Calendar.YEAR, 1) }
+            Calendar.getInstance().apply { roll(Calendar.YEAR, 1) },
         )
             .map { it.apply { it[Calendar.DAY_OF_YEAR] = dayOfYear } }
-            .minBy { abs(it.timeInMillis - now.timeInMillis) }!!
+            .minBy { abs(it.timeInMillis - now.timeInMillis) }
 
         yearToUse[Calendar.DAY_OF_YEAR] = dayOfYear
         return yearToUse

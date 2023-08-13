@@ -76,7 +76,7 @@ class CameraReticleAnimator(graphicOverlay: GraphicOverlay) {
             rippleFadeOutAnimator,
             rippleExpandAnimator,
             rippleStrokeWidthShrinkAnimator,
-            fakeAnimatorForRestartDelay
+            fakeAnimatorForRestartDelay,
         )
     }
 

@@ -42,7 +42,7 @@ private fun PreCheck(status: String?) {
     when (status?.trim()) {
         "1" -> Text(
             text = "SSSS",
-            style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold)
+            style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
         )
 
         "3" -> Column {
@@ -50,7 +50,7 @@ private fun PreCheck(status: String?) {
                 modifier = Modifier.size(width = 70.dp, height = 20.dp),
                 painter = painterResource(id = R.drawable.pre),
                 tint = Color.Unspecified,
-                contentDescription = stringResource(R.string.tsa_precheck)
+                contentDescription = stringResource(R.string.tsa_precheck),
             )
             Spacer(modifier = Modifier.height(5.dp))
         }
@@ -61,7 +61,7 @@ private fun PreCheck(status: String?) {
 private fun SingleDataRow(
     label: String,
     data: String?,
-    spacing: Dp = 10.dp
+    spacing: Dp = 10.dp,
 ) {
     if (!data.isNullOrBlank()) {
         Column {
@@ -74,7 +74,7 @@ private fun SingleDataRow(
 @Composable
 private fun MultipleDataRow(
     spacing: Dp = 10.dp,
-    body: @Composable MultipleDataRowScope.() -> Unit
+    body: @Composable MultipleDataRowScope.() -> Unit,
 ) {
     Column {
         Spacer(Modifier.height(spacing))
@@ -89,7 +89,7 @@ private class MultipleDataRowScope {
         data: String?,
         modifier: Modifier = Modifier,
         first: Boolean = false,
-        spacing: Dp = 20.dp
+        spacing: Dp = 20.dp,
     ) {
         if (!data.isNullOrBlank()) {
             if (!first) Spacer(Modifier.width(spacing))
@@ -102,18 +102,18 @@ private class MultipleDataRowScope {
 private fun BoardingPassCard(
     topBar: @Composable () -> Unit,
     body: @Composable () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Card3(
         modifier = modifier,
-        elevation = 5.dp
+        elevation = 5.dp,
     ) {
         Column {
             Surface(color = Color(0xB3FFFFFF)) {
                 Box(
                     Modifier
                         .padding(20.dp)
-                        .fillMaxWidth()
+                        .fillMaxWidth(),
                 ) {
                     topBar()
                 }
@@ -123,8 +123,8 @@ private fun BoardingPassCard(
                     top = 10.dp,
                     bottom = 20.dp,
                     start = 20.dp,
-                    end = 20.dp
-                )
+                    end = 20.dp,
+                ),
             ) {
                 body()
             }
@@ -135,13 +135,15 @@ private fun BoardingPassCard(
 @Composable
 fun BoardingPass(
     iataCode: IataCode,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     val passenger = iataCode.passengerName.trim()
     val flight = iataCode.firstFlightSegment
-    val airline = (flight.marketingCarrierDesignator
-        .let { if (it.isNullOrBlank()) null else it }
-        ?: flight.operatingCarrierDesignator)
+    val airline = (
+        flight.marketingCarrierDesignator
+            .let { if (it.isNullOrBlank()) null else it }
+            ?: flight.operatingCarrierDesignator
+        )
         ?.trim()?.uppercase(Locale.US)
     val selectee = flight.selecteeIndicator
     val seat = flight.seatNumber?.trimStart('0')?.trim()
@@ -154,7 +156,7 @@ fun BoardingPass(
     val frequentFlyer = buildString {
         append(
             flight.frequentFlyerDesignator.takeIf { it?.isNotBlank() == true }?.trim()
-                ?.uppercase(Locale.US)?.plus(" ").orEmpty()
+                ?.uppercase(Locale.US)?.plus(" ").orEmpty(),
         )
         append(flight.frequentFlyerNumber?.trim().orEmpty())
     }
@@ -180,7 +182,7 @@ fun BoardingPass(
                 SingleDataRow("FREQUENT FLYER", frequentFlyer)
                 SingleDataRow("LOCATOR", locator)
             }
-        }
+        },
     )
 }
 
@@ -188,17 +190,17 @@ fun BoardingPass(
 private fun LabelAndData(
     label: String,
     data: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(modifier) {
         Text(
             text = label,
             style = MaterialTheme.typography.labelSmall,
-            color = LocalContentColor.current.copy(alpha = 0.6f)
+            color = LocalContentColor.current.copy(alpha = 0.6f),
         )
         Text(
             text = data,
-            style = MaterialTheme.typography.bodyLarge
+            style = MaterialTheme.typography.bodyLarge,
         )
     }
 }
@@ -226,7 +228,7 @@ private class IataCodePreviewProvider : PreviewParameterProvider<IataCode> {
                     .element(Element.FREQUENT_FLYER_AIRLINE_DESIGNATOR, "AA")
                     .element(Element.FREQUENT_FLYER_NUMBER, "VBIPY782H")
                     .element(Element.CHECK_IN_SEQUENCE_NUMBER, "006")
-                    .build()
+                    .build(),
             ),
 
         IataCode.Builder()
@@ -241,7 +243,7 @@ private class IataCodePreviewProvider : PreviewParameterProvider<IataCode> {
                     .element(Element.SELECTEE_INDICATOR, "1")
                     .element(Element.DATE_OF_FLIGHT, "125")
                     .element(Element.CHECK_IN_SEQUENCE_NUMBER, "073")
-                    .build()
+                    .build(),
             ),
 
         IataCode.Builder()
@@ -256,7 +258,7 @@ private class IataCodePreviewProvider : PreviewParameterProvider<IataCode> {
                     .element(Element.SELECTEE_INDICATOR, "")
                     .element(Element.DATE_OF_FLIGHT, "125")
                     .element(Element.CHECK_IN_SEQUENCE_NUMBER, "633")
-                    .build()
-            )
+                    .build(),
+            ),
     ).map { it.build() }
 }

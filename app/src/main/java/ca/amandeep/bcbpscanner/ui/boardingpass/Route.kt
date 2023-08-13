@@ -37,19 +37,19 @@ import ca.amandeep.bcbpscanner.ui.theme.BCBPScannerTheme
 fun Route(
     fromCity: String,
     toCity: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Column(modifier) {
         Row(
             Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 modifier = Modifier.weight(1.0f),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 text = AirportToNameMap.getCityForCode(fromCity),
-                style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Light)
+                style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Light),
             )
             Text(
                 modifier = Modifier.weight(1.0f),
@@ -57,31 +57,31 @@ fun Route(
                 overflow = TextOverflow.Ellipsis,
                 text = AirportToNameMap.getCityForCode(toCity),
                 style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Light),
-                textAlign = TextAlign.End
+                textAlign = TextAlign.End,
             )
         }
         Row(
             Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Text(
                 modifier = Modifier.weight(1.0f),
                 text = fromCity,
-                style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.Black)
+                style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.Black),
             )
             Spacer(Modifier.width(32.dp))
             Icon(
                 modifier = Modifier.size(32.dp),
                 painter = painterResource(id = R.drawable.ic_plane),
                 tint = LocalContentColor.current,
-                contentDescription = ""
+                contentDescription = "",
             )
             Spacer(Modifier.width(30.dp))
             Text(
                 modifier = Modifier.weight(1.0f),
                 text = toCity,
                 style = MaterialTheme.typography.headlineLarge.copy(fontWeight = FontWeight.Black),
-                textAlign = TextAlign.End
+                textAlign = TextAlign.End,
             )
         }
     }

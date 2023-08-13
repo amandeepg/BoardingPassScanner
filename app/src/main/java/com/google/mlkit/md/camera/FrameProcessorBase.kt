@@ -18,6 +18,7 @@ package com.google.mlkit.md.camera
 
 import android.os.SystemClock
 import androidx.annotation.GuardedBy
+import com.github.ajalt.timberkt.Timber.d
 import com.google.android.gms.tasks.OnFailureListener
 import com.google.android.gms.tasks.Task
 import com.google.android.gms.tasks.TaskExecutors
@@ -49,7 +50,7 @@ abstract class FrameProcessorBase<T> : FrameProcessor {
     override fun process(
         data: ByteBuffer,
         frameMetadata: FrameMetadata,
-        graphicOverlay: GraphicOverlay
+        graphicOverlay: GraphicOverlay,
     ) {
         latestFrame = data
         latestFrameMetaData = frameMetadata
@@ -58,6 +59,7 @@ abstract class FrameProcessorBase<T> : FrameProcessor {
         }
     }
 
+    @Suppress("RemoveExplicitTypeArguments")
     @Synchronized
     private fun processLatestFrame(graphicOverlay: GraphicOverlay) {
         processingFrame = latestFrame
@@ -71,16 +73,16 @@ abstract class FrameProcessorBase<T> : FrameProcessor {
             frameMetaData.width,
             frameMetaData.height,
             frameMetaData.rotation,
-            InputImage.IMAGE_FORMAT_NV21
+            InputImage.IMAGE_FORMAT_NV21,
         )
         val startMs = SystemClock.elapsedRealtime()
         detectInImage(image)
-            .addOnSuccessListener(executor) { results: T ->
-//                d { "Latency is: ${SystemClock.elapsedRealtime() - startMs}" }
+            .addOnSuccessListener<T>(executor) { results: T ->
+                d { "Latency is: ${SystemClock.elapsedRealtime() - startMs}" }
                 this@FrameProcessorBase.onSuccess(results, graphicOverlay)
                 processLatestFrame(graphicOverlay)
             }
-            .addOnFailureListener(executor) { OnFailureListener { this@FrameProcessorBase.onFailure(it) } }
+            .addOnFailureListener<T>(executor) { OnFailureListener { this@FrameProcessorBase.onFailure(it) } }
     }
 
     override fun stop() {
@@ -92,7 +94,7 @@ abstract class FrameProcessorBase<T> : FrameProcessor {
     /** Be called when the detection succeeds.  */
     protected abstract fun onSuccess(
         results: T,
-        graphicOverlay: GraphicOverlay
+        graphicOverlay: GraphicOverlay,
     )
 
     protected abstract fun onFailure(e: Exception)

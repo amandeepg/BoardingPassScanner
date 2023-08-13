@@ -32,7 +32,7 @@ private val ALLIANCES = listOf(
         "SN",
         "OS",
         "AI",
-        "JP"
+        "JP",
     ),
     R.drawable.skyteam to listOf(
         "GA",
@@ -56,7 +56,7 @@ private val ALLIANCES = listOf(
         "AR",
         "KE",
         "AZ",
-        "FV"
+        "FV",
     ),
     R.drawable.oneworld to listOf(
         "GH",
@@ -85,8 +85,8 @@ private val ALLIANCES = listOf(
         "BA",
         "MH",
         "I2",
-        "HG"
-    )
+        "HG",
+    ),
 )
 
 fun allianceForAirline(airline: String?): Int? =
