@@ -26,7 +26,6 @@ import com.google.mlkit.md.camera.GraphicOverlay
 /** Draws the graphic to indicate the barcode result is in loading.  */
 internal class BarcodeLoadingGraphic(overlay: GraphicOverlay, private val loadingAnimator: ValueAnimator) :
     BarcodeGraphicBase(overlay) {
-
     private val boxClockwiseCoordinates: Array<PointF> = arrayOf(
         PointF(boxRect.left, boxRect.top),
         PointF(boxRect.right, boxRect.top),

@@ -45,7 +45,8 @@ data class FlightSegment private constructor(val elements: Map<Element, CharSequ
             var dateOfFlight: Int? = null
             try {
                 dateOfFlight = getValue(Element.DATE_OF_FLIGHT).toString().toInt()
-            } catch (nfe: NumberFormatException) { // Ignore...
+            } catch (nfe: NumberFormatException) {
+                // Ignore...
             }
             return dateOfFlight
         }
@@ -74,7 +75,8 @@ data class FlightSegment private constructor(val elements: Map<Element, CharSequ
             var airlineNumericCode: Int? = null
             try {
                 airlineNumericCode = getValue(Element.AIRLINE_NUMERIC_CODE).toString().toInt()
-            } catch (nfe: NumberFormatException) { // Ignore...
+            } catch (nfe: NumberFormatException) {
+                // Ignore...
             }
             return airlineNumericCode
         }

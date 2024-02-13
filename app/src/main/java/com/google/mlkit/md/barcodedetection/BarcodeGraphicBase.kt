@@ -30,7 +30,6 @@ import com.google.mlkit.md.camera.GraphicOverlay
 import com.google.mlkit.md.camera.GraphicOverlay.Graphic
 
 internal abstract class BarcodeGraphicBase(overlay: GraphicOverlay) : Graphic(overlay) {
-
     private val boxPaint: Paint = Paint().apply {
         color = ContextCompat.getColor(context, R.color.barcode_reticle_stroke)
         style = Style.STROKE

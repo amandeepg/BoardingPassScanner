@@ -9,7 +9,6 @@ import splitties.experimental.ExperimentalSplittiesApi
 import splitties.permissions.hasPermission
 
 class ScanningViewModel(application: Application) : AndroidViewModel(application) {
-
     val flashOnFlow = MutableStateFlow(false)
 
     var flashOn: Boolean
@@ -33,11 +32,15 @@ class ScanningViewModel(application: Application) : AndroidViewModel(application
         }
 
     sealed interface State {
-        object Stopped : State
-        object Detecting : State
+        data object Stopped : State
+
+        data object Detecting : State
+
         open class Detected(val code: IataCode) : State
+
         class DetectedAndStopped(code: IataCode) : Detected(code), State
-        object Searching : State
+
+        data object Searching : State
 
         val isStopped: Boolean
             get() = this is Stopped || this is DetectedAndStopped

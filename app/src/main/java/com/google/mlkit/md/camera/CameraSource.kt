@@ -49,7 +49,6 @@ import kotlin.math.ceil
  */
 @Suppress("DEPRECATION")
 class CameraSource(private val graphicOverlay: GraphicOverlay) {
-
     private var camera: Camera? = null
     private var rotationDegrees: Int = 0
 
@@ -307,7 +306,6 @@ class CameraSource(private val graphicOverlay: GraphicOverlay) {
      * frame will immediately start on the same thread.
      */
     private inner class FrameProcessingRunnable internal constructor() : Runnable {
-
         // This lock guards all of the member variables below.
         private val lock = Object()
         private var active = true
@@ -409,7 +407,6 @@ class CameraSource(private val graphicOverlay: GraphicOverlay) {
     }
 
     companion object {
-
         const val CAMERA_FACING_BACK = CameraInfo.CAMERA_FACING_BACK
 
         private const val TAG = "CameraSource"

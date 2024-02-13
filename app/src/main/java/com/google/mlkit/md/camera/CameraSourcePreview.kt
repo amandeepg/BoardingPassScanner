@@ -30,7 +30,6 @@ import java.io.IOException
 
 /** Preview the camera image in the screen.  */
 class CameraSourcePreview(context: Context, attrs: AttributeSet) : FrameLayout(context, attrs) {
-
     private val surfaceView: SurfaceView = SurfaceView(context).apply {
         holder.addCallback(SurfaceCallback())
         addView(this)

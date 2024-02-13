@@ -22,7 +22,6 @@ import androidx.interpolator.view.animation.FastOutSlowInInterpolator
 
 /** Custom animator for the object or barcode reticle in live camera.  */
 class CameraReticleAnimator(graphicOverlay: GraphicOverlay) {
-
     /** Returns the scale value of ripple alpha ranges in [0, 1].  */
     var rippleAlphaScale = 0f
         private set
@@ -92,7 +91,6 @@ class CameraReticleAnimator(graphicOverlay: GraphicOverlay) {
     }
 
     companion object {
-
         private const val DURATION_RIPPLE_FADE_IN_MS: Long = 333
         private const val DURATION_RIPPLE_FADE_OUT_MS: Long = 500
         private const val DURATION_RIPPLE_EXPAND_MS: Long = 833

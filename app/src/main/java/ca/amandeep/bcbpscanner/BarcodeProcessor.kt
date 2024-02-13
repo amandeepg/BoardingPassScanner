@@ -28,7 +28,6 @@ class BarcodeProcessor(
     private val scanningViewModel: ScanningViewModel,
 ) :
     FrameProcessorBase<IataCode?>() {
-
     private val cameraReticleAnimator: CameraReticleAnimator = CameraReticleAnimator(graphicOverlay)
 
     override fun detectInImage(image: InputImage): Task<IataCode?> =

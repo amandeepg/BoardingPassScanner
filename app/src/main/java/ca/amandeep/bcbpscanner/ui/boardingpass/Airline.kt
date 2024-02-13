@@ -196,11 +196,11 @@ private object TrimTransform : Transformation {
             }
         }
         return Bitmap.createBitmap(
-            /* source = */ input,
-            /* x = */ minX,
-            /* y = */ minY,
-            /* width = */ maxX - minX + 1,
-            /* height = */ maxY - minY + 1,
+            input, // source
+            minX, // x
+            minY, // y
+            maxX - minX + 1, // width
+            maxY - minY + 1, // height
         )
     }
 
@@ -211,7 +211,9 @@ private object TrimTransform : Transformation {
 
 @Composable
 @Preview(showBackground = true)
-private fun PreviewAirline(@PreviewParameter(ArlinePreviewProvider::class) airline: String) {
+private fun PreviewAirline(
+    @PreviewParameter(ArlinePreviewProvider::class) airline: String,
+) {
     BCBPScannerTheme {
         Row(
             Modifier

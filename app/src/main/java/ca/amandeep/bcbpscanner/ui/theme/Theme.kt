@@ -90,15 +90,15 @@ fun Card3(
         modifier = modifier,
         elevation = elevation,
         backgroundColor =
-        if (isSystemInDarkTheme()) {
-            MaterialTheme.colorScheme.surface
-        } else {
-            lerp(
-                MaterialTheme.colorScheme.surface,
-                Color(0xFF7E7E7E),
-                0.07f,
-            )
-        },
+            if (isSystemInDarkTheme()) {
+                MaterialTheme.colorScheme.surface
+            } else {
+                lerp(
+                    MaterialTheme.colorScheme.surface,
+                    Color(0xFF7E7E7E),
+                    0.07f,
+                )
+            },
     ) {
         ProvideTextStyle(TextStyle(color = MaterialTheme.colorScheme.onSurface)) {
             CompositionLocalProvider(LocalContentColor provides MaterialTheme.colorScheme.onSurface) {

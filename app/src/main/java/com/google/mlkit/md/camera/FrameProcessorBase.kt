@@ -30,7 +30,6 @@ import java.nio.ByteBuffer
 
 /** Abstract base class of [FrameProcessor].  */
 abstract class FrameProcessorBase<T> : FrameProcessor {
-
     // To keep the latest frame and its metadata.
     @GuardedBy("this")
     private var latestFrame: ByteBuffer? = null

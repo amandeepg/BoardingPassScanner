@@ -27,7 +27,6 @@ import kotlin.math.abs
 
 /** Utility class to provide helper methods.  */
 object Utils {
-
     /**
      * If the absolute difference between aspect ratios is less than this tolerance, they are
      * considered to be the same aspect ratio.

@@ -90,8 +90,8 @@ fun Route(
 @Preview(name = "Light", showBackground = true)
 @Preview(name = "Dark", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-fun RouteSample() {
-    BCBPScannerTheme() {
+private fun RouteSample() {
+    BCBPScannerTheme {
         Route("ORD", "JFK")
     }
 }

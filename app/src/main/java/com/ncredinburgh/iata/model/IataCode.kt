@@ -111,6 +111,7 @@ data class IataCode private constructor(
 
         companion object {
             private const val MAX_NO_OF_SEGMENTS = 4
+
             private fun assertUniqueOccurrence(e: Element) {
                 check(e.occurrence == Occurrence.U) {
                     String.format(

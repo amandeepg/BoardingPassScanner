@@ -143,8 +143,7 @@ fun BoardingPass(
         flight.marketingCarrierDesignator
             .let { if (it.isNullOrBlank()) null else it }
             ?: flight.operatingCarrierDesignator
-        )
-        ?.trim()?.uppercase(Locale.US)
+    )?.trim()?.uppercase(Locale.US)
     val selectee = flight.selecteeIndicator
     val seat = flight.seatNumber?.trimStart('0')?.trim()
     val seq = flight.checkInSequenceNumber.trimStart('0').trim()
@@ -208,7 +207,9 @@ private fun LabelAndData(
 @Preview(name = "Light", showBackground = true)
 @Preview(name = "Dark", showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
-private fun Sample(@PreviewParameter(IataCodePreviewProvider::class) iataCode: IataCode) {
+private fun Sample(
+    @PreviewParameter(IataCodePreviewProvider::class) iataCode: IataCode,
+) {
     BCBPScannerTheme { Surface { BoardingPass(iataCode) } }
 }
 
@@ -230,7 +231,6 @@ private class IataCodePreviewProvider : PreviewParameterProvider<IataCode> {
                     .element(Element.CHECK_IN_SEQUENCE_NUMBER, "006")
                     .build(),
             ),
-
         IataCode.Builder()
             .element(Element.PASSENGER_NAME, "HILARY A PORTER")
             .flightSegment(
@@ -245,7 +245,6 @@ private class IataCodePreviewProvider : PreviewParameterProvider<IataCode> {
                     .element(Element.CHECK_IN_SEQUENCE_NUMBER, "073")
                     .build(),
             ),
-
         IataCode.Builder()
             .element(Element.PASSENGER_NAME, "HILARY A PORTER")
             .flightSegment(

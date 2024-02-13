@@ -31,7 +31,6 @@ import com.google.mlkit.md.camera.GraphicOverlay
  */
 internal class BarcodeReticleGraphic(overlay: GraphicOverlay, private val animator: CameraReticleAnimator) :
     BarcodeGraphicBase(overlay) {
-
     private val ripplePaint: Paint
     private val rippleSizeOffset: Int
     private val rippleStrokeWidth: Int

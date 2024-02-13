@@ -22,7 +22,6 @@ import kotlin.math.abs
  * This class provides static factory methods for creating [Calendar] instances in UTC.
  */
 object UTCCalendarFactory {
-
     @JvmStatic
     fun getInstanceForDayOfYear(dayOfYear: Int): Calendar {
         val now = Calendar.getInstance()
