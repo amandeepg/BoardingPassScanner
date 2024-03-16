@@ -36,8 +36,20 @@ class ImportBarcodeLauncher(
 ) {
     private val pickMediaLauncher =
         activity.registerForActivityResult(ActivityResultContracts.PickVisualMedia()) {
-            it?.let { cropImage(it) }
-                ?: onCancel()
+            it?.let { uri ->
+                val image = InputImage.fromFilePath(activity, uri)
+                BarcodeProcessor.scanner.process(image)
+                    .addOnSuccessListener { detectedBarcodes ->
+                        val barCode = detectedBarcodes.asSequence().mapNotNull { BarcodeProcessor.parseBarcode(it) }.firstOrNull()
+                        if (barCode == null) {
+                            cropImage(uri)
+                        } else {
+                            onBarcodeSelected(barCode)
+                        }
+                    }
+                    .addOnCanceledListener { cropImage(uri) }
+                    .addOnFailureListener { cropImage(uri) }
+            } ?: onCancel()
         }
 
     private val cropImageLauncher =
@@ -45,8 +57,8 @@ class ImportBarcodeLauncher(
             if (result.isSuccessful) {
                 val image = InputImage.fromFilePath(activity, result.uriContent!!)
                 BarcodeProcessor.scanner.process(image)
-                    .addOnSuccessListener {
-                        val barCode = it?.firstOrNull()?.let { BarcodeProcessor.parseBarcode(it) }
+                    .addOnSuccessListener { detectedBarcodes ->
+                        val barCode = detectedBarcodes.asSequence().mapNotNull { BarcodeProcessor.parseBarcode(it) }.firstOrNull()
                         if (barCode == null) {
                             activity.materialAlertDialog {
                                 titleResource = R.string.barcode_fail_parse_title
