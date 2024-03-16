@@ -18,7 +18,10 @@ Built with:
 * [Kotlin Flow](https://kotlinlang.org/docs/flow.html)
 * [Android ViewModels](https://developer.android.com/topic/libraries/architecture/viewmodel)
 * Barcode scanning with [ML Kit](https://developers.google.com/ml-kit/vision/barcode-scanning)
-Framing screenshots with [framer](https://github.com/amandeepg/framer)
+* Framing screenshots with [framer](https://github.com/amandeepg/framer)
 
 ## Screenshots
-<img src="./screenshots/1.webp" width="400"/> <img src="./screenshots/2.webp" width="400"/>
+<a href="https://raw.githubusercontent.com/amandeepg/BoardingPassScanner/master/images/framescr1.webp"><img src="images/framescr1.webp" width="45%"/></a> 
+<a href="https://raw.githubusercontent.com/amandeepg/BoardingPassScanner/master/images/framescr2.webp"><img src="images/framescr2.webp" width="45%"/></a> 
+<a href="https://raw.githubusercontent.com/amandeepg/BoardingPassScanner/master/images/framescr3.webp"><img src="images/framescr3.webp" width="45%"/></a> 
+<a href="https://raw.githubusercontent.com/amandeepg/BoardingPassScanner/master/images/framescr4.webp"><img src="images/framescr4.webp" width="45%"/></a> 
