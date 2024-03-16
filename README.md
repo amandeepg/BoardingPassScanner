@@ -11,8 +11,8 @@ Some features of the app:
 
 ## Development
 Built with:
-* 100% Kotlin
-* UI in 100% [Jetpack Compose](https://developer.android.com/jetpack/compose)
+* 100% Kotlin except included library code.
+* UI in ~99% [Jetpack Compose](https://developer.android.com/jetpack/compose)
 * [Kotlin Flow](https://kotlinlang.org/docs/flow.html)
 * [Android ViewModels](https://developer.android.com/topic/libraries/architecture/viewmodel)
 
