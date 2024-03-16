@@ -1,5 +1,3 @@
-@file:Suppress("RemoveEmptyParenthesesFromAnnotationEntry")
-
 package ca.amandeep.bcbpscanner.ui.boardingpass
 
 import android.content.res.Configuration
